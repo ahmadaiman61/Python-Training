@@ -39,45 +39,44 @@
 # n = int(input())
 # prime_checker(number=n)
 
-
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
-
-#TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.\
-
-
-def encrypt(text,shift):
+def caesar(text,shift,ops):
     
     result = []
     listed = list(text)
     count = len(listed) ### len show real number count 1-...
     for position in range(count):   ### The range() function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and stops before a specified number.
-        shifted = (alphabet.index(listed[position]) + shift) % 26  ##use the modulo operator % to wrap around the index if it exceeds 25.
+        shifted = (op_func(alphabet.index(listed[position]),shift)) % 26  ##use the modulo operator % to wrap around the index if it exceeds 25.
         result += alphabet[shifted]
     new_string = "".join(result)
-    print(f"The encoded text is {new_string}")
+    print(f"The {direction}d text is {new_string}")
 
-encrypt(text,shift)
+decision = True
+while decision == True:
 
-testadvuahsjbdakihjs
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
 
+    import operator
 
+    ops = {
+        "+" : operator.add,
+        "-" : operator.sub
+    }
 
+    if direction == 'encode':
+        op_char = "+"
+    else:
+        op_char = "-"
 
-    #TODO-2: Inside the 'encrypt' function, shift each letter of the 'text' forwards in the alphabet by the shift amount and print the encrypted text.  
-    #e.g. 
-    #plain_text = "hello"
-    #shift = 5
-    #cipher_text = "mjqqt"
-    #print output: "The encoded text is mjqqt"
+    op_func = ops[op_char]
 
-    ##HINT: How do you get the index of an item in a list:
-    #https://stackoverflow.com/questions/176918/finding-the-index-of-an-item-in-a-list
+    caesar(text,shift,ops)
 
-    ##🐛Bug alert: What happens if you try to encode the word 'civilization'?🐛
-
-#TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message. 
+    decision = input(f"Do you want to restart the program?\n").lower()
+    if decision == "yes":
+        decision = True
+    else:
+        decision = False
