@@ -59,20 +59,54 @@
 
 #Odd occurences in array
 
-def solution(A):
-    num_A = len(A)
-    A.sort()
+# def solution(A):
+#     num_A = len(A)
+#     A.sort()
 
-    print(A)
+#     print(A)
 
-    if num_A == 1:
-        return A[0]
-    else:
-        for i in range(0, num_A - 1, 2):  ##stepsize of 2 because it always have pair
-            if A[i] != A[i+1]:
-                return A[i]
-        return A[-1]
+#     if num_A == 1:
+#         return A[0]
+#     else:
+#         for i in range(0, num_A - 1, 2):  ##stepsize of 2 because it always have pair
+#             if A[i] != A[i+1]:
+#                 return A[i]
+#         return A[-1]
 
-arr = [9, 3, 9, 3, 9, 7, 9]  # Unpaired element is 7
-print(solution(arr))  # Output: 7
+# arr = [9, 3, 9, 3, 9, 7, 9]  # Unpaired element is 7
+# print(solution(arr))  # Output: 7
+
+
+#Codility Frog Jump
+
+# x(starting position) = 1, y(final target) = 7, D(jumpstepsize) = 2
+
+# def solution(x,y,D):
+#     starting_position = x
+#     final_target = y
+#     jump = D
+#     not_reach_target = True
+#     jump_counter = 0
+
+#     while not_reach_target:
+#         starting_position += jump
+#         jump_counter += 1
+#         if starting_position >= final_target:
+#             not_reach_target = False
+
+#     return jump_counter
+# or 
+
+# def solution(x,y,D):
+#     import math
+#     jump_counter = math.ceil((y-x)/D)
+#     return jump_counter
+
+# starting_position = 1
+# final_target = 16
+# jump = 2
+# result = solution(starting_position, final_target, jump)
+# print("Jump Counter:", result)
+
+
 
